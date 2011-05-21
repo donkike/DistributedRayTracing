@@ -1,4 +1,4 @@
-package raytracing;
+package scene;
 
 import java.awt.Color;
 

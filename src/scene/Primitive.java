@@ -1,8 +1,8 @@
-package raytracing;
+package scene;
 
 public interface Primitive {
 	
-	public boolean intersect();
+	public int intersect();
 	public double getNormal();
 
 }

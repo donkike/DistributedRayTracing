@@ -1,6 +1,6 @@
-package raytracing;
+package scene;
 
-public abstract class SceneObject {
+public abstract class SceneObject implements Primitive {
 	
 	protected String name;
 	protected Material material;

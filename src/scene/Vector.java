@@ -1,4 +1,4 @@
-package raytracing;
+package scene;
 
 public class Vector {
 	

@@ -1,5 +1,8 @@
 package scene;
 
+import math.Ray;
+import math.Vector;
+
 public class Sphere extends SceneObject {
 	
 	private Vector center;

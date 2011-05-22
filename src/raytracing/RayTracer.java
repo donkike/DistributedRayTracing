@@ -1,6 +1,7 @@
 package raytracing;
 
 import scene.*;
+import math.*;
 
 public class RayTracer {
 	
@@ -15,7 +16,7 @@ public class RayTracer {
 			SceneObject object = scene.getObject(i);
 			
 		}
-	}
+	}	
 	
 	public void setScene(Scene scene) {
 		this.scene = scene;

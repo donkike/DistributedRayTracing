@@ -1,4 +1,4 @@
-package scene;
+package math;
 
 public class Vector {
 	

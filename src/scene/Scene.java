@@ -10,6 +10,10 @@ public class Scene {
 		objects.add(object);
 	}
 	
+	public SceneObject getObject(int i) {
+		return objects.get(i);
+	}
+	
 	public ArrayList<SceneObject> getObjects() {
 		return objects;
 	}

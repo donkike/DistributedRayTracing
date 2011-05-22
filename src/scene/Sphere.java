@@ -1,9 +1,16 @@
 package scene;
 
 public class Sphere extends SceneObject {
+	
+	private double radius;
 
-	public Sphere(Vector pos) {
+	public Sphere(Vector pos, double radius) {
 		this.pos = pos;
+		this.radius = radius;
+	}
+	
+	public double getRadius() {
+		return radius;
 	}
 	
 	@Override

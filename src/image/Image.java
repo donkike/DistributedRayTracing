@@ -19,13 +19,9 @@ public class Image {
 		image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 	}
 	
-	public void save(String filename, String format, boolean absolutePath) {
+	public void save(String filename, String format) {
 		try {
-			File file = null;
-			if (absolutePath)
-				file = new File(filename);
-			else
-				file = new File("images/" + filename);
+			File file = new File("images/" + filename);
 			ImageIO.write(image, format, file);
 			System.out.println("Saved image to " + file.getAbsolutePath() + " in " + format + " format");
 		} catch (IOException ioe) {

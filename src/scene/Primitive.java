@@ -2,7 +2,7 @@ package scene;
 
 public interface Primitive {
 	
-	public int intersect();
-	public double getNormal();
+	public double intersect(Ray r);
+	public Vector getNormal(Vector v);
 
 }

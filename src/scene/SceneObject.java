@@ -4,7 +4,6 @@ public abstract class SceneObject implements Primitive {
 	
 	protected String name;
 	protected Material material;
-	protected Vector pos;
 	protected boolean light;
 	
 	public boolean isLight() {

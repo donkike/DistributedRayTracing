@@ -50,8 +50,8 @@ public class Vector {
 	}
 	
 	public double[] getComponents() {
-		double arr[] = {x, y, z};
-		return arr;
+		double components[] = {x, y, z};
+		return components;
 	}
 	
 	public String toString() {

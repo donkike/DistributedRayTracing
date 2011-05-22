@@ -29,7 +29,7 @@ public class Image {
 			ImageIO.write(image, format, file);
 			System.out.println("Saved image to " + file.getAbsolutePath() + " in " + format + " format");
 		} catch (IOException ioe) {
-			System.out.println("Could not create image: " + ioe.getMessage());
+			System.out.println("Could not save image: " + ioe.getMessage());
 		}
 	}
 	

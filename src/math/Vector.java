@@ -48,5 +48,14 @@ public class Vector {
 		double newZ = (x * v.y) - (y * v.x);
 		return new Vector(newX, -newY, newZ);
 	}
+	
+	public double[] getArray() {
+		double arr[] = {x, y, z};
+		return arr;
+	}
+	
+	public String toString() {
+		return "Vector(" + x + ", " + y + ", " + z + ")";
+	}
 
 }

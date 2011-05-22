@@ -5,7 +5,6 @@ import math.*;
 import scene.*;
 import java.awt.Color;
 
-
 public class Main {
 	
 	public static void main(String[] args) {
@@ -16,6 +15,8 @@ public class Main {
 		RayTracer rt = new RayTracer(scene);
 		rt.execute();
 		rt.getImage().save("basic.jpg", "jpeg");
+		
+		System.out.println(new Vector(1.0, 1.0, 1.0));
 		
 	}
 

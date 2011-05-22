@@ -8,7 +8,8 @@ public class Sphere extends SceneObject {
 	private Vector center;
 	private double radius;
 
-	public Sphere(Vector center, double radius) {
+	public Sphere(Vector center, double radius, Material material) {
+		super(material);
 		this.center = center;
 		this.radius = radius;
 	}
@@ -24,10 +25,11 @@ public class Sphere extends SceneObject {
 	@Override
 	public double intersects(Ray r) {
 		Vector d = r.getDirection(), o = r.getOrigin();
+		Vector delta = o.substract(center);
 		
 		double A = d.dot(d);
-		double B = 2 * (d.dot(o));
-		double C = o.dot(o) - radius*radius;
+		double B = 2 * (delta.dot(d));
+		double C = delta.dot(delta) - radius*radius;
 		
 		double disc = B * B - 4 * A * C;
 		if (disc < 0) return -1;

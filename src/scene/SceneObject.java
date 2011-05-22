@@ -6,6 +6,10 @@ public abstract class SceneObject implements Primitive {
 	protected Material material;
 	protected boolean light;
 	
+	public SceneObject(Material material) {
+		this.material = material;
+	}
+	
 	public boolean isLight() {
 		return light;
 	}

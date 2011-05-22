@@ -30,6 +30,10 @@ public class Vector {
 		return new Vector(x + v.x, y + v.y, z + v.z);
 	}
 	
+	public Vector multiply(double scalar) {
+		return new Vector(scalar * x, scalar * y, scalar * z);
+	}
+	
 	public Vector substract(Vector v) {
 		return new Vector(x - v.x, y - v.y, z - v.z);
 	}

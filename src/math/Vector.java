@@ -49,7 +49,7 @@ public class Vector {
 		return new Vector(newX, -newY, newZ);
 	}
 	
-	public double[] getArray() {
+	public double[] getComponents() {
 		double arr[] = {x, y, z};
 		return arr;
 	}

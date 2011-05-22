@@ -4,10 +4,14 @@ import java.util.ArrayList;
 
 public class Scene {
 	
+	private int width;
+	private int height;
 	private ArrayList<SceneObject> objects;
 	
-	public Scene() {
+	public Scene(int width, int height) {
 		objects = new ArrayList<SceneObject>();
+		this.width = width;
+		this.height = height;
 	}
 	
 	public void addObject(SceneObject object) {
@@ -24,6 +28,14 @@ public class Scene {
 	
 	public int getNumObjects() {
 		return objects.size();
+	}
+	
+	public int getHeight() {
+		return height;
+	}
+	
+	public int getWidth() {
+		return width;
 	}
 
 }

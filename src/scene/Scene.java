@@ -6,6 +6,10 @@ public class Scene {
 	
 	private ArrayList<SceneObject> objects;
 	
+	public Scene() {
+		objects = new ArrayList<SceneObject>();
+	}
+	
 	public void addObject(SceneObject object) {
 		objects.add(object);
 	}

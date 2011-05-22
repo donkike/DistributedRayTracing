@@ -19,7 +19,7 @@ public class Sphere extends SceneObject {
 	}
 	
 	@Override
-	public double intersect(Ray r) {
+	public double intersects(Ray r) {
 		Vector d = r.getDirection(), o = r.getOrigin();
 		
 		double A = d.dot(d);
@@ -42,7 +42,7 @@ public class Sphere extends SceneObject {
 	@Override
 	public Vector getNormal(Vector v) {
 		Vector normal = center.substract(v);
-		return normal.normalize();
+		return normal.normalized();
 	}
 
 }

@@ -14,7 +14,14 @@ public class Vector {
 		return Math.sqrt(x * x + y * y + z * z);
 	}
 	
-	public Vector normalize() {
+	public void normalize() {
+		double length = length();
+		x /= length;
+		y /= length;
+		z /= length;
+	}
+	
+	public Vector normalized() {
 		double length = length();
 		return new Vector(x / length, y / length, z / length);
 	}

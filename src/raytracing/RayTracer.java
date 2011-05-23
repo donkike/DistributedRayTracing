@@ -1,7 +1,7 @@
 package raytracing;
 
-import java.awt.Color;
 
+import image.Color;
 import image.Image;
 import scene.*;
 import math.*;
@@ -31,7 +31,7 @@ public class RayTracer {
 	
 	public Color intersectObject(Ray r){
 		double distance = Double.MAX_VALUE;
-		Color color = Color.BLACK;
+		Color color = Color.createColor(Color.BLACK);
 		
 		// search for closer object
 		for (int k = 0; k < scene.getNumObjects(); k++) {
@@ -54,29 +54,18 @@ public class RayTracer {
 		if (o.getMaterial().getReflection() > 0){
 			Vector reflectDirection = r.getDirection().add(o.getNormal(intersection).multiply(2*c1));
 			reflectColor = intersectObject(new Ray(intersection, reflectDirection));
-			float[] comp = reflectColor.getColorComponents(null);
-			for (int i = 0; i < 3; i++) comp[i] *= o.getMaterial().getReflection();
-			reflectColor = new Color(comp[0], comp[1], comp[2]);
+			reflectColor = reflectColor.multiply((float)o.getMaterial().getReflection());
 		}
 		if(o.getMaterial().getDiffuse() > 0){
 			double n = o.getMaterial().getDiffuse();
 			double c2 = Math.sqrt(1- Math.pow(n, 2) * (1 - Math.pow(c1, 2)));
 			Vector refractDirection = r.getDirection().multiply(n).add(o.getNormal(intersection).multiply(n*c1-c2));
 			refractColor = intersectObject(new Ray(intersection, refractDirection));
-			float[] comp = refractColor.getColorComponents(null);
-			for (int i = 0; i < 3; i++) comp[i] *= o.getMaterial().getDiffuse();
-			refractColor = new Color(comp[0], comp[1], comp[2]);
+			refractColor = refractColor.multiply((float)o.getMaterial().getReflection());
 		}
 		//Combinar los colores
-		float[] compC = color.getColorComponents(null);
-		float[] compRC = color.getColorComponents(null);
-		float[] compRfC = color.getColorComponents(null);
-		float nRed, nGreen, nBlue = 0;
-		nRed = (compC[0] + compRC[0] + compRfC[0])/3;
-		nGreen = (compC[1] + compRC[1] + compRfC[1])/3;
-		nBlue = (compC[2] + compRC[2] + compRfC[2])/3;
-		color = new Color(nRed, nGreen, nBlue);
-		return color;
+		Color[] colors = {color, reflectColor, refractColor};
+		return Color.combine(colors);
 	}
 	
 	public Image getImage() {

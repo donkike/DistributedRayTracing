@@ -13,7 +13,9 @@ public class Color extends java.awt.Color {
 	}
 	
 	public Color multiply(float num) {
-		return new Color(getRed() * num, getGreen() * num, getBlue() * num);
+		if (num > 1) num = 1;
+		if (num < 0) num = 0;
+		return new Color(getColorComponents(null)[0] * num, getColorComponents(null)[1] * num, getColorComponents(null)[2] * num);
 	}
 	
 	public Color combine(Color c) {
@@ -22,6 +24,19 @@ public class Color extends java.awt.Color {
 		for (int i = 0; i < newColorComponents.length; i++) 
 			newColorComponents[i] = (colorComponents[0][i] + colorComponents[1][i]) / 2;
 		return new Color(newColorComponents[0], newColorComponents[1], newColorComponents[2]);
+	}
+	
+	public static Color combine(Color[] colors) {
+		float colorComponents[] = new float[3];
+		for (int i = 0; i < colorComponents.length; i++) {
+			for (int j = 0; j < colors.length; j++) colorComponents[i] += colors[j].getComponents(null)[i];
+			colorComponents[i] /= colors.length;
+		}
+		return new Color(colorComponents[0], colorComponents[1], colorComponents[2]);
+	}
+	
+	public static Color createColor(java.awt.Color color) {
+		return new Color(color.getRed(), color.getGreen(), color.getBlue());
 	}
 
 }

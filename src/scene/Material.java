@@ -1,6 +1,6 @@
 package scene;
 
-import java.awt.Color;
+import image.Color;
 
 public class Material {
 	

@@ -33,6 +33,10 @@ public class Image {
 		image.setRGB(x, y, color.getRGB());
 	}
 	
+	public void writePixel(int x, int y, int RGB) {
+		image.setRGB(x, y, RGB);
+	}
+	
 	public BufferedImage getImage() {
 		return image;
 	}

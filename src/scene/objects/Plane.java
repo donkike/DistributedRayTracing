@@ -15,6 +15,10 @@ public class Plane extends SceneObject {
 		this.normal = normal;
 		this.distance = distance;
 	}
+	
+	public double getDistance() {
+		return distance;
+	}
 
 	@Override
 	public double intersects(Ray r) {

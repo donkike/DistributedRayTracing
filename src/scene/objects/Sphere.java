@@ -1,5 +1,7 @@
-package scene;
+package scene.objects;
 
+import scene.Material;
+import scene.SceneObject;
 import math.Ray;
 import math.Vector;
 

@@ -20,7 +20,7 @@ public class RayTracer {
 				
 				// cast ray
 				Ray viewRay = new Ray(new Vector((double)i, (double)j, -1000.0), 
-									  new Vector(0.0, 0.0, 1.0));
+									  new Vector(0.0, 0.0, 1.0).normalized());
 				int closer = -1;
 				double distance = Double.MAX_VALUE;
 				

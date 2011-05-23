@@ -19,9 +19,11 @@ public class Main {
 								  new Material(Color.createColor(Color.CYAN), 0.0, 0.0)));
 		
 		RayTracer rt = new RayTracer(scene);
+		long begin = System.currentTimeMillis();
 		rt.execute();
+		long end = System.currentTimeMillis();
 		rt.getImage().save("basic.jpg", "jpeg");
-		
+		System.out.println("Execution time: "+ (end - begin) +" ms");		
 	}
 
 }

@@ -1,14 +1,26 @@
 package scene;
 
+import math.Vector;
+
 public abstract class SceneObject implements Primitive {
 	
 	protected String name;
+	protected Vector pos;
 	protected Material material;
 	protected boolean light;
 	
-	public SceneObject(Material material) {
+	public SceneObject(Material material, Vector pos) {
 		this.material = material;
+		this.pos = pos;
 		light = false;
+	}
+	
+	public Vector getPos(){
+		return pos;
+	}
+	
+	public void setPos(Vector pos){
+		this.pos = pos;
 	}
 	
 	public boolean isLight() {

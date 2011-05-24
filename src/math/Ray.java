@@ -11,6 +11,10 @@ public class Ray {
 		this.direction = direction;
 	}
 	
+	public Vector getPoint(double t){
+		return origin.add(direction.multiply(t));
+	}
+	
 	public Vector getOrigin() {
 		return origin;
 	}

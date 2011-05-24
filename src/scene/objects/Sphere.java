@@ -11,7 +11,7 @@ public class Sphere extends SceneObject {
 	private double radius;
 
 	public Sphere(Vector center, double radius, Material material) {
-		super(material);
+		super(material, center);
 		this.center = center;
 		this.radius = radius;
 	}

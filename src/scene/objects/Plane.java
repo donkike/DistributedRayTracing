@@ -10,8 +10,8 @@ public class Plane extends SceneObject {
 	private Vector normal;
 	private double distance;
 
-	public Plane(Vector normal, double distance, Material material) {
-		super(material);
+	public Plane(Vector normal, double distance, Material material, Vector pos) {
+		super(material, pos);
 		this.normal = normal;
 		this.distance = distance;
 	}

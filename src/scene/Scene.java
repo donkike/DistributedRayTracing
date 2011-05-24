@@ -7,9 +7,11 @@ public class Scene {
 	private int width;
 	private int height;
 	private ArrayList<SceneObject> objects;
+	private ArrayList<SceneObject> lights;
 	
 	public Scene(int width, int height) {
 		objects = new ArrayList<SceneObject>();
+		lights = new ArrayList<SceneObject>();
 		this.width = width;
 		this.height = height;
 	}
@@ -26,8 +28,24 @@ public class Scene {
 		return objects;
 	}
 	
+	public void addLight(SceneObject object){
+		lights.add(object);
+	}
+	
+	public SceneObject getLight(int i){
+		return lights.get(i);
+	}
+	
+	public ArrayList<SceneObject> getLights(){
+		return lights;
+	}
+	
 	public int getNumObjects() {
 		return objects.size();
+	}
+	
+	public int getNumLights(){
+		return lights.size();
 	}
 	
 	public int getHeight() {

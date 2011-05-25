@@ -76,7 +76,7 @@ public class RayTracer {
 		if (recursion < RECURSION_LIMIT && reflection > 0.01){
 			Vector reflectDirection = r.getDirection().add(normal.multiply(2*c1));
 			reflectColor = intersectObject(new Ray(intersection, reflectDirection), ++recursion);
-			reflectColor = reflectColor.multiply((float)o.getMaterial().getReflection());
+			reflectColor = reflectColor.multiply((float)reflection);
 		}
 		if(recursion < RECURSION_LIMIT && refraction > 0.01){
 			double n = 1/refraction;
@@ -85,7 +85,7 @@ public class RayTracer {
 				c2 = Math.sqrt(c2);
 				Vector refractDirection = r.getDirection().multiply(n).add(normal.multiply(n*c1-c2));
 				refractColor = intersectObject(new Ray(intersection, refractDirection), ++recursion);
-				refractColor = refractColor.multiply((float)o.getMaterial().getDiffuse());
+				refractColor = refractColor.multiply((float)refraction);
 			}
 		}
 		//Combinar los colores

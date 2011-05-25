@@ -8,7 +8,7 @@ import math.*;
 
 public class RayTracer {
 	
-	public static final int RECURSION_LIMIT = 5;
+	public static final int RECURSION_LIMIT = 10;
 	
 	private Scene scene;
 	private Image image;
@@ -52,12 +52,13 @@ public class RayTracer {
 	}
 	
 	public Color findColor(SceneObject o, double d, Ray r, int recursion){
-		Color color, reflectColor;
-		color = reflectColor = o.getMaterial().getColor();
+		Color color, reflectColor, refractColor;
+		color = reflectColor = refractColor = o.getMaterial().getColor();
 		Vector intersection = r.getPoint(d);
 		Vector normal = o.getNormal(intersection);
 		double diffuse = o.getMaterial().getDiffuse();
 		double reflection = o.getMaterial().getReflection();
+		double refraction = o.getMaterial().getRefraction();
 		double shade = 0.0;
 		
 		for (int k = 0; k < scene.getNumLights(); k++){
@@ -77,13 +78,16 @@ public class RayTracer {
 			reflectColor = intersectObject(new Ray(intersection, reflectDirection), ++recursion);
 			reflectColor = reflectColor.multiply((float)o.getMaterial().getReflection());
 		}
-		/*if(o.getMaterial().getDiffuse() > 0){
-			double n = o.getMaterial().getDiffuse();
-			double c2 = Math.sqrt(1- Math.pow(n, 2) * (1 - Math.pow(c1, 2)));
-			Vector refractDirection = r.getDirection().multiply(n).add(normal.multiply(n*c1-c2));
-			refractColor = intersectObject(new Ray(intersection, refractDirection));
-			refractColor = refractColor.multiply((float)o.getMaterial().getDiffuse());
-		}*/
+		if(recursion < RECURSION_LIMIT && refraction > 0.01){
+			double n = 1/refraction;
+			double c2 = 1- Math.pow(n, 2) * (1 - Math.pow(c1, 2));
+			if (c2 > 0.0){
+				c2 = Math.sqrt(c2);
+				Vector refractDirection = r.getDirection().multiply(n).add(normal.multiply(n*c1-c2));
+				refractColor = intersectObject(new Ray(intersection, refractDirection), ++recursion);
+				refractColor = refractColor.multiply((float)o.getMaterial().getDiffuse());
+			}
+		}
 		//Combinar los colores
 		Color[] colors = {color, reflectColor};
 		return Color.combine(colors);

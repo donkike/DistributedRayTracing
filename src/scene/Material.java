@@ -7,11 +7,13 @@ public class Material {
 	private Color color;
 	private double reflection;
 	private double diffuse;
+	private double refraction;
 	
-	public Material(Color color, double reflection, double diffuse) {
+	public Material(Color color, double reflection, double diffuse, double refraction) {
 		this.color = color;
 		this.reflection = reflection;
 		this.diffuse = diffuse;
+		this.refraction = refraction;
 	}
 	
 	public Color getColor() {
@@ -38,4 +40,11 @@ public class Material {
 		this.diffuse = diffuse;
 	}
 
+	public double getRefraction() {
+		return refraction;
+	}
+	
+	public void setRefraction(double refraction) {
+		this.refraction = refraction;
+	}
 }

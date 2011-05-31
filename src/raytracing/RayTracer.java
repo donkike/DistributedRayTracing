@@ -18,15 +18,15 @@ public class RayTracer {
 		image = new Image(scene.getWidth(), scene.getHeight());
 	}
 	
-	public void execute() {
-		for (int i = 0; i < image.getWidth(); i++) {
-			for (int j = 0; j < image.getHeight(); j++) {
+	public static void execute(Scene scene) {
+		for (int i = 0; i < scene.getWidth(); i++) {
+			for (int j = 0; j < scene.getHeight(); j++) {
 				
 				// cast ray
 				Ray viewRay = new Ray(new Vector((double)i, (double)j, -1000.0), 
 									  new Vector(0.0, 0.0, 1.0).normalized());
 				
-				image.writePixel(i, j, intersectObject(viewRay, 0));
+				//image.writePixel(i, j, intersectObject(viewRay, 0));
 			}
 		}
 	}	

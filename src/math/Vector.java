@@ -1,6 +1,8 @@
 package math;
 
-public class Vector {
+import java.io.Serializable;
+
+public class Vector implements Serializable {
 	
 	public double x, y, z;
 	

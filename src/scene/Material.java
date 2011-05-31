@@ -1,8 +1,10 @@
 package scene;
 
+import java.io.Serializable;
+
 import image.Color;
 
-public class Material {
+public class Material implements Serializable {
 	
 	private Color color;
 	private double reflection;

@@ -1,11 +1,13 @@
 package raytracing;
 
 
+import java.io.Serializable;
+
 import image.Color;
 import scene.*;
 import math.*;
 
-public class RayTracer {
+public class RayTracer implements Serializable {
 	
 	public static final int RECURSION_LIMIT = 10;
 	
@@ -14,15 +16,16 @@ public class RayTracer {
 	public RayTracer(Scene scene) {
 		this.scene = scene;
 	}
-	
+
 	public int[][] execute() {
 		return execute(0, scene.getHeight());
 	}
 	
 	public int[][] execute(int fromRow, int toRow) {
-		int colors[][] = new int[scene.getWidth()][toRow - fromRow];
-		for (int i = 0; i < scene.getWidth(); i++) {
-			for (int j = fromRow; j < toRow; j++) {
+		System.out.println("Executing RayTracer from " + fromRow + " to " + toRow);
+		int colors[][] = new int[toRow - fromRow + 1][scene.getWidth()];
+		for (int i = 0; i < toRow - fromRow; i++) {
+			for (int j = 0; j < scene.getWidth(); j++) {
 				
 				// cast ray
 				Ray viewRay = new Ray(new Vector((double)i, (double)j, -1000.0), 
@@ -95,6 +98,10 @@ public class RayTracer {
 		//Combinar los colores
 		Color[] colors = {color, reflectColor};
 		return Color.combine(colors);
+	}
+	
+	public Scene getScene() {
+		return scene;
 	}
 	
 	public void setScene(Scene scene) {

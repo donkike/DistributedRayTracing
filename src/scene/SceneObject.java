@@ -1,8 +1,10 @@
 package scene;
 
+import java.io.Serializable;
+
 import math.Vector;
 
-public abstract class SceneObject implements Primitive {
+public abstract class SceneObject implements Primitive, Serializable {
 	
 	protected String name;
 	protected Vector pos;

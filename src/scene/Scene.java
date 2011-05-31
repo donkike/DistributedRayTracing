@@ -1,8 +1,9 @@
 package scene;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Scene {
+public class Scene implements Serializable {
 	
 	private int width;
 	private int height;

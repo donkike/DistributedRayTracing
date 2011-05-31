@@ -61,5 +61,14 @@ public class Image {
 		}
 		return randomImage;
 	}
+	
+	public static Image generateImage(int[][] colors) {
+		Image image = new Image(colors.length, colors[0].length);
+		for (int i = 0; i < colors.length; i++) {
+			for (int j = 0; j < colors[0].length; j++) 
+				image.writePixel(i, j, colors[i][j]);			
+		}
+		return image;
+	}
 
 }

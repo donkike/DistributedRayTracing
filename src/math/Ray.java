@@ -1,7 +1,9 @@
 package math;
 
+import java.io.Serializable;
 
-public class Ray {
+
+public class Ray implements Serializable {
 	
 	private Vector origin;
 	private Vector direction;

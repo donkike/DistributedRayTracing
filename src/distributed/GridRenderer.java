@@ -9,6 +9,7 @@ import scene.Scene;
 
 public class GridRenderer {
 	
+	@SuppressWarnings("unchecked")
 	public static void render(Scene scene) throws GridException {
 		GridFactory.start();
 		try {

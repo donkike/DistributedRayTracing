@@ -16,6 +16,7 @@ import scene.SceneObject;
 
 public class Parser {
 	
+	@SuppressWarnings("unchecked")
 	public static Scene parse(String filename) throws Exception {
 		File file = new File(filename);
 		SAXBuilder builder = new SAXBuilder();

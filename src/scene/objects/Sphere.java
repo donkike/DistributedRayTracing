@@ -5,6 +5,7 @@ import scene.SceneObject;
 import math.Ray;
 import math.Vector;
 
+@SuppressWarnings("serial")
 public class Sphere extends SceneObject {
 	
 	private Vector center;

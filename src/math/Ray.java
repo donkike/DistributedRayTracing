@@ -3,6 +3,7 @@ package math;
 import java.io.Serializable;
 
 
+@SuppressWarnings("serial")
 public class Ray implements Serializable {
 	
 	private Vector origin;

@@ -1,9 +1,7 @@
 package raytracing;
 
-import org.gridgain.grid.GridException;
-import parser.Parser;
 
-import distributed.GridRenderer;
+import parser.Parser;
 import scene.Scene;
 import image.Image;
 

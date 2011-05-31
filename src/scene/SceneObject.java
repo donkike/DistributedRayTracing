@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import math.Vector;
 
+@SuppressWarnings("serial")
 public abstract class SceneObject implements Primitive, Serializable {
 	
 	protected String name;

@@ -3,6 +3,7 @@ package scene;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+@SuppressWarnings("serial")
 public class Scene implements Serializable {
 	
 	private int width;

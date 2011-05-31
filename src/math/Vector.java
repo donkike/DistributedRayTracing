@@ -2,6 +2,7 @@ package math;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class Vector implements Serializable {
 	
 	public double x, y, z;
@@ -12,19 +13,23 @@ public class Vector implements Serializable {
 		this.z = z;
 	}
 	
-	public double length() {
+	public double magnitude() {
 		return Math.sqrt(x * x + y * y + z * z);
 	}
 	
+	public double magnitudeSquared(){
+		return (x * x + y * y + z * z);
+	}
+	
 	public void normalize() {
-		double length = length();
+		double length = magnitude();
 		x /= length;
 		y /= length;
 		z /= length;
 	}
 	
 	public Vector normalized() {
-		double length = length();
+		double length = magnitude();
 		return new Vector(x / length, y / length, z / length);
 	}
 	
@@ -49,6 +54,24 @@ public class Vector implements Serializable {
 		double newY = (x * v.z) - (z * v.x);
 		double newZ = (x * v.y) - (y * v.x);
 		return new Vector(newX, -newY, newZ);
+	}
+	
+	public boolean equals(Vector v){
+		boolean eq = true;
+		for (int i = 0; i < 3; i++) if (this.getComponents()[i] != v.getComponents()[i]) eq = false;
+		return eq;
+	}
+	
+	public boolean geq(Vector v){
+		boolean geq = true;
+		for (int i = 0; i < 3; i++) if (this.getComponents()[i] < v.getComponents()[i]) geq = false;
+		return geq;
+	}
+	
+	public boolean leq(Vector v){
+		boolean leq = true;
+		for (int i = 0; i < 3; i++) if (this.getComponents()[i] > v.getComponents()[i]) leq = false;
+		return leq;
 	}
 	
 	public double[] getComponents() {

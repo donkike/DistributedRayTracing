@@ -27,18 +27,29 @@
 	</lights>
 	
 	<objects>
+		<object type="plane" infinite="true">
+			<min x="200.0" y="200.0" z="100" />
+			<max x="100.0" y="100.0" z="-100" />
+			<other x="200.0" y="150.0" z="-100" />
+			<material>
+				<color red="200" green="123" blue="90" />
+				<diffuse value="0.3" />
+				<reflection value="0.5" />
+				<refraction value="1.2" />
+			</material>
+		</object>
 		<object type="sphere">
-			<position x="300.0" y="200.0" z="100.0" />
+			<position x="200.0" y="300.0" z="100.0" />
 			<radius value="100.0" />
 			<material>
-				<color red="216" green="147" blue="50" />
+				<color red="147" green="216" blue="50" />
 				<diffuse value="0.47" />
 				<reflection value="0.6" />
 				<refraction value="1.52" />
 			</material>
 		</object>
 		<object type="sphere">
-			<position x="200.0" y="100.0" z="200.0" />
+			<position x="100.0" y="200.0" z="200.0" />
 			<radius value="50.0" />
 			<material>
 				<color red="55" green="165" blue="190" />
@@ -48,7 +59,7 @@
 			</material>
 		</object>	
 		<object type="sphere">
-				<position x="400.0" y="100.0" z="50.0" />
+				<position x="100.0" y="400.0" z="50.0" />
 				<radius value="70.0" />
 				<material>
 					<color red="216" green="147" blue="50" />

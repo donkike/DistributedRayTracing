@@ -56,5 +56,13 @@ public class Scene implements Serializable {
 	public int getWidth() {
 		return width;
 	}
+	
+	public void setLights(ArrayList<SceneObject> lights) {
+		this.lights = lights;
+	}
+	
+	public void setObjects(ArrayList<SceneObject> objects) {
+		this.objects = objects;
+	}
 
 }

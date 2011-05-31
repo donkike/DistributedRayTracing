@@ -1,0 +1,16 @@
+<scene width="600" height="400">
+	<lights>
+		
+	</lights>
+	<objects>
+		<object type="sphere">
+			<position x="200.0" y="200.0" z="200.0" />
+			<material>
+				<color red="200" green="155" blue="120" />
+				<diffuse value="0.0" />
+				<reflection value="0.0" />
+				<refraction value="0.0" />
+			</material>
+		</object>
+	</objects>
+</scene>

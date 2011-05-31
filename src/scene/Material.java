@@ -49,4 +49,9 @@ public class Material implements Serializable {
 	public void setRefraction(double refraction) {
 		this.refraction = refraction;
 	}
+	
+	public String toString() {
+		return "Material(Color(R:" + color.getRed() + ",G:" + color.getGreen() + ",B:" + color.getBlue() + "))" +
+				"\n  Refraction:" + refraction + "; Reflection:" + reflection + "; Diffuse:" + diffuse;
+	}
 }

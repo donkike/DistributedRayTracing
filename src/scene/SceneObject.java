@@ -50,7 +50,7 @@ public abstract class SceneObject implements Primitive, Serializable {
 	}
 	
 	public String toString() {
-		return "Object: " + this.getClass().getName() + "\n" + material.toString();
+		return "Object: " + this.getClass().getName() + " at " + pos.toString() + "\n" + material.toString();
 	}
 
 }

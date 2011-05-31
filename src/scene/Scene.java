@@ -64,5 +64,16 @@ public class Scene implements Serializable {
 	public void setObjects(ArrayList<SceneObject> objects) {
 		this.objects = objects;
 	}
+	
+	public String toString() {
+		String value = "Scene:";
+		value += "\n--Lights:";
+		for (SceneObject light : lights) 
+			value += "\n" + light.toString();
+		value += "\n--Objects:";
+		for (SceneObject object : objects)
+			value += "\n" + object.toString();
+		return value;
+	}
 
 }

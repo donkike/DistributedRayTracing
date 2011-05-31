@@ -1,12 +1,15 @@
 package parser;
 
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.input.SAXBuilder;
+import org.springframework.util.StringUtils;
 
 import scene.Scene;
 import scene.SceneObject;
@@ -25,13 +28,41 @@ public class Parser {
 		List<Element> lightElements = root.getChild("lights").getChildren("light");
 		for (Element light : lightElements) 
 			lights.add(parseObject(light));
+		List<Element> objectElements = root.getChild("objects").getChildren("object");
+		for (Element object : objectElements) 
+			objects.add(parseObject(object));
+		scene.setLights(lights);
+		scene.setObjects(objects);
 		return scene;
 	}
 	
 	public static SceneObject parseObject(Element object) {
 		String type = object.getAttributeValue("type");
-		Element position = object.getChild("position");
-		double x = Double.parseDouble(position.getAttributeValue("x"));
+		Method method = null;
+		try {
+			method = SceneObjectFactory.class.getMethod("create" + StringUtils.capitalize(type), Element.class);
+			return (SceneObject)method.invoke(null, object);
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		} catch (NoSuchMethodException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public static void main(String[] args) {
+		try {
+			Scene scene = parse("scenes/basic.xml");
+			System.out.println(scene);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

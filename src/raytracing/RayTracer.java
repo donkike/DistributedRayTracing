@@ -2,13 +2,18 @@ package raytracing;
 
 
 import image.Color;
-import image.Image;
 import scene.*;
 import math.*;
 
 public class RayTracer {
 	
 	public static final int RECURSION_LIMIT = 10;
+	
+	private Scene scene;
+	
+	public RayTracer(Scene scene) {
+		this.scene = scene;
+	}
 	
 	public int[][] execute() {
 		int colors[][] = new int[scene.getWidth()][scene.getHeight()];
@@ -86,10 +91,6 @@ public class RayTracer {
 		//Combinar los colores
 		Color[] colors = {color, reflectColor};
 		return Color.combine(colors);
-	}
-	
-	public Image getImage() {
-		return image;
 	}
 	
 	public void setScene(Scene scene) {

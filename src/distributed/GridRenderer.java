@@ -5,24 +5,27 @@ import org.gridgain.grid.GridFactory;
 import org.gridgain.grid.gridify.Gridify;
 
 import raytracing.RayTracer;
+import scene.Scene;
 
 public class GridRenderer {
 	
-	public static void render(RayTracer rt) throws GridException {
+	public static void render(Scene scene) throws GridException {
 		GridFactory.start();
 		try {
+			long begin = System.currentTimeMillis();
 			int numNodes = GridFactory.grid().nodes().size();
-			int height = rt.getScene().getHeight();
+			int height = scene.getHeight();
 			int delta = height / numNodes;
-			for (int i = 0; i < height; i += delta) executeRT(rt, i, i + delta < height ? i + delta : height);
+			for (int i = 0; i < height; i += delta) executeRayTracer(scene, i, i + delta < height ? i + delta : height);
+			System.out.println("Running time: " + (System.currentTimeMillis() - begin));
 		} finally {
 			GridFactory.stop(true);
 		}
 	}
 	
 	@Gridify
-	public static void executeRT(RayTracer rt, int fromRow, int toRow) {
-		rt.execute(fromRow, toRow);
+	public static void executeRayTracer(Scene scene, int fromRow, int toRow) {
+		new RayTracer(scene).execute(fromRow, toRow);
 	}
 
 }

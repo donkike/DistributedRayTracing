@@ -28,12 +28,12 @@ public class Main {
 								   new Material(Color.createColor(Color.RED), 0.3, 0.54, 1.54)));
 		RayTracer rt = new RayTracer(scene);
 		long begin = System.currentTimeMillis();
-		//rt.execute();
-		try {
-			GridRenderer.render(rt);
+		rt.execute();
+		/*try {
+			GridRenderer.render(scene);
 		} catch(GridException ge) {
 			System.err.println("GridException: " + ge.getMessage());
-		}
+		}*/
 		long end = System.currentTimeMillis();
 		//rt.getImage().save("basic.jpg", "jpeg");
 		System.out.println("Execution time: "+ (end - begin) +" ms");		

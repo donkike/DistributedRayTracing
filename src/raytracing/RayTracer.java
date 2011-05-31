@@ -1,13 +1,10 @@
 package raytracing;
 
-
-import java.io.Serializable;
-
 import image.Color;
 import scene.*;
 import math.*;
 
-public class RayTracer implements Serializable {
+public class RayTracer {
 	
 	public static final int RECURSION_LIMIT = 10;
 	
@@ -95,7 +92,7 @@ public class RayTracer implements Serializable {
 				refractColor = refractColor.multiply((float)refraction);
 			}
 		}
-		//Combinar los colores
+		// combine colors
 		Color[] colors = {color, reflectColor};
 		return Color.combine(colors);
 	}

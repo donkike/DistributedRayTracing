@@ -16,9 +16,13 @@ public class RayTracer {
 	}
 	
 	public int[][] execute() {
-		int colors[][] = new int[scene.getWidth()][scene.getHeight()];
+		return execute(0, scene.getHeight());
+	}
+	
+	public int[][] execute(int fromRow, int toRow) {
+		int colors[][] = new int[scene.getWidth()][toRow - fromRow];
 		for (int i = 0; i < scene.getWidth(); i++) {
-			for (int j = 0; j < scene.getHeight(); j++) {
+			for (int j = fromRow; j < toRow; j++) {
 				
 				// cast ray
 				Ray viewRay = new Ray(new Vector((double)i, (double)j, -1000.0), 

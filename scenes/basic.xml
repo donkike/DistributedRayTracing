@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE scene>
+
 <scene width="600" height="400">
 	
 	<lights>
@@ -13,7 +14,7 @@
 				<refraction value="0.0" />
 			</material>
 		</light>
-		<light>
+		<light type="sphere">
 			<position x="400.0" y="300.0" z="400.0" />
 			<radius value="10.0" />
 			<material>
@@ -45,7 +46,8 @@
 				<reflection value="0.4" />
 				<refraction value="1.33" />
 			</material>
-		</object>	<object type="sphere">
+		</object>	
+		<object type="sphere">
 				<position x="400.0" y="100.0" z="50.0" />
 				<radius value="70.0" />
 				<material>

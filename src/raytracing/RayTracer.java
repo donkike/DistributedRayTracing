@@ -19,16 +19,15 @@ public class RayTracer {
 	}
 	
 	public int[][] execute(int fromRow, int toRow) {
-		System.out.println("Executing RayTracer from " + fromRow + " to " + toRow);
+		System.out.println("Executing RayTracer from  row " + fromRow + " to " + toRow);
 		int colors[][] = new int[toRow - fromRow + 1][scene.getWidth()];
-		for (int i = 0; i < toRow - fromRow; i++) {
+		for (int i = 0; fromRow + i < toRow; i++) {
 			for (int j = 0; j < scene.getWidth(); j++) {
 				
 				// cast ray
 				Ray viewRay = new Ray(new Vector((double)i, (double)j, -1000.0), 
 									  new Vector(0.0, 0.0, 1.0).normalized());
 				
-				//image.writePixel(i, j, intersectObject(viewRay, 0));
 				colors[i][j] = intersectObject(viewRay, 0).getRGB();
 			}
 		}

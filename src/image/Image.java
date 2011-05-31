@@ -63,10 +63,10 @@ public class Image {
 	}
 	
 	public static Image generateImage(int[][] colors) {
-		Image image = new Image(colors.length, colors[0].length);
+		Image image = new Image(colors[0].length, colors.length);
 		for (int i = 0; i < colors.length; i++) {
 			for (int j = 0; j < colors[0].length; j++) 
-				image.writePixel(i, j, colors[i][j]);			
+				image.writePixel(j, i, colors[i][j]);			
 		}
 		return image;
 	}

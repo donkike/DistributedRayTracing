@@ -55,14 +55,5 @@ public class Parser {
 		}
 		return null;
 	}
-	
-	public static void main(String[] args) {
-		try {
-			Scene scene = parse("scenes/basic.xml");
-			System.out.println(scene);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 }

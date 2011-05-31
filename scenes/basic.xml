@@ -5,7 +5,7 @@
 	
 	<lights>
 		<light type="sphere">
-			<position x="200.0" y="200.0" z="200.0" />
+		  <position x="200.0" y="200.0" z="200.0" />
 			<radius value="200.0" />
 			<material>
 				<color red="255" green="255" blue="0" />

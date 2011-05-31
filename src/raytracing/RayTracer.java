@@ -10,15 +10,8 @@ public class RayTracer {
 	
 	public static final int RECURSION_LIMIT = 10;
 	
-	private Scene scene;
-	private Image image;
-	
-	public RayTracer(Scene scene) {
-		this.scene = scene;
-		image = new Image(scene.getWidth(), scene.getHeight());
-	}
-	
-	public static void execute(Scene scene) {
+	public int[][] execute() {
+		int colors[][] = new int[scene.getWidth()][scene.getHeight()];
 		for (int i = 0; i < scene.getWidth(); i++) {
 			for (int j = 0; j < scene.getHeight(); j++) {
 				
@@ -27,8 +20,10 @@ public class RayTracer {
 									  new Vector(0.0, 0.0, 1.0).normalized());
 				
 				//image.writePixel(i, j, intersectObject(viewRay, 0));
+				colors[i][j] = intersectObject(viewRay, 0).getRGB();
 			}
 		}
+		return colors;
 	}	
 	
 	public Color intersectObject(Ray r, int recursion){

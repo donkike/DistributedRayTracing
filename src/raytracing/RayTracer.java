@@ -25,9 +25,8 @@ public class RayTracer {
 			for (int j = 0; j < scene.getWidth(); j++) {
 				
 				// cast ray
-				Ray viewRay = new Ray(new Vector((double)i, (double)j, -1000.0), 
+				Ray viewRay = new Ray(new Vector((double)(fromRow + i), (double)j, -1000.0), 
 									  new Vector(0.0, 0.0, 1.0).normalized());
-				
 				colors[i][j] = intersectObject(viewRay, 0).getRGB();
 			}
 		}

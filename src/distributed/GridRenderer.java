@@ -1,5 +1,7 @@
 package distributed;
 
+import image.Image;
+
 import org.gridgain.grid.GridException;
 import org.gridgain.grid.GridFactory;
 import org.gridgain.grid.gridify.Gridify;
@@ -11,21 +13,20 @@ public class GridRenderer {
 	
 	public static void render(Scene scene) throws GridException {
 		GridFactory.start();
+		int[][] colors = null;
 		try {
 			long begin = System.currentTimeMillis();
-			int numNodes = GridFactory.grid().nodes().size();
-			int height = scene.getHeight();
-			int delta = height / numNodes;
-			for (int i = 0; i < height; i += delta) executeRayTracer(scene, i, i + delta < height ? i + delta : height);
-			System.out.println("Running time: " + (System.currentTimeMillis() - begin));
+			colors = executeRayTracer(scene, 0, scene.getHeight());
+			System.out.println("Distributed execution time: " + (System.currentTimeMillis() - begin));
 		} finally {
-			GridFactory.stop(true);
+			GridFactory.stop(false);
+			Image.generateImage(colors).save("distributedRender.jpg", "jpeg");
 		}
 	}
 	
-	@Gridify
-	public static void executeRayTracer(Scene scene, int fromRow, int toRow) {
-		new RayTracer(scene).execute(fromRow, toRow);
+	@Gridify(taskClass=RayTracerTask.class)
+	public static int[][] executeRayTracer(Scene scene, int fromRow, int toRow) {
+		return new RayTracer(scene).execute(fromRow, toRow);
 	}
 
 }

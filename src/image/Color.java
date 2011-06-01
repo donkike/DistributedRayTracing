@@ -38,5 +38,9 @@ public class Color extends java.awt.Color {
 	public static Color createColor(java.awt.Color color) {
 		return new Color(color.getRed(), color.getGreen(), color.getBlue());
 	}
+	
+	public String toString() {
+		return "Color(R:" + getRed() + ",G:" + getGreen() + ",B:" + getBlue() + ")";
+	}
 
 }

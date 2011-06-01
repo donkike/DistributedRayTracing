@@ -19,7 +19,7 @@ public class GridRenderer {
 			colors = executeRayTracer(scene, 0, scene.getHeight());
 			System.out.println("Distributed execution time: " + (System.currentTimeMillis() - begin));
 		} finally {
-			GridFactory.stop(false);
+			GridFactory.stop(false); // don't cancel jobs, wait for completion
 			Image.generateImage(colors).save("distributedRender.jpg", "jpeg");
 		}
 	}

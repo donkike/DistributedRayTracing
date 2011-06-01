@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.apache.commons.lang.ArrayUtils;
 import org.gridgain.grid.GridException;
 import org.gridgain.grid.GridJob;
 import org.gridgain.grid.GridJobAdapterEx;
@@ -15,7 +14,6 @@ import org.gridgain.grid.gridify.GridifyArgument;
 import scene.Scene;
 
 public class RayTracerTask extends GridTaskSplitAdapter<GridifyArgument, int[][]> {
-
 
 	@Override
 	protected Collection<? extends GridJob> split(int gridSize, GridifyArgument arg)
@@ -28,9 +26,8 @@ public class RayTracerTask extends GridTaskSplitAdapter<GridifyArgument, int[][]
 
 				@Override
 				public int[][] execute() throws GridException {					
-					int[][] result = GridRenderer.executeRayTracer((Scene)argument(0),
-																	(Integer)argument(1), (Integer)argument(2));
-					return result;
+					return GridRenderer.executeRayTracer((Scene)argument(0),
+														 (Integer)argument(1), (Integer)argument(2));
 				}
 				
 			});
@@ -47,9 +44,6 @@ public class RayTracerTask extends GridTaskSplitAdapter<GridifyArgument, int[][]
 			int[][] data = (int[][])jobResult.getData();
 			for (int i = 0; i < data.length; i++) {
 				result[pos++] = data[i];
-				/*for (int j = 0; j < data[0].length; j++) 
-					result[pos][j] = data[i][j];
-				pos++;*/
 			}
 		}
 		return result;

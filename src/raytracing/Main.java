@@ -11,7 +11,7 @@ public class Main {
 		
 		Scene scene = null;
 		try {
-			scene = Parser.parse("scenes/cylinder.xml");
+			scene = Parser.parse("scenes/basic.xml");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return;
@@ -21,8 +21,8 @@ public class Main {
 		long begin = System.currentTimeMillis();
 
 		int[][] imageColors = rt.execute();
-		//Image.generateImage(imageColors).save("basicWithParse.jpg", "jpeg");
-		Image.generateImage(imageColors).save("cylinder.jpg", "jpeg");
+		Image.generateImage(imageColors).save("basicWithParse.jpg", "jpeg");
+		//Image.generateImage(imageColors).save("cylinder.jpg", "jpeg");
 		/*try {
 		//int[][] imageColors = rt.execute();
 		//Image.generateImage(imageColors).save("basicWithParse.jpg", "jpeg");

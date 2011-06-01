@@ -7,6 +7,7 @@ import math.*;
 public class RayTracer {
 	
 	public static final int RECURSION_LIMIT = 10;
+	public static final Color G_AMBIENT = Color.createColor(new Color(100,100,100));
 	
 	private Scene scene;
 	

@@ -28,6 +28,7 @@
 				<diffuse value="0.3" />
 				<reflection value="0.5" />
 				<refraction value="1.2" />
+				<specular value="1.5"/>
 			</material>
 		</object> -->	
 		<object type="sphere">
@@ -38,6 +39,7 @@
 				<diffuse value="0.47" />
 				<reflection value="0.6" />
 				<refraction value="1.52" />
+				<specular value="1.2"/>
 			</material>
 		</object>
 		<object type="sphere">
@@ -48,6 +50,7 @@
 				<diffuse value="0.6" />
 				<reflection value="0.4" />
 				<refraction value="1.33" />
+				<specular value="1.0"/>
 			</material>
 		</object>	
 		<object type="sphere">
@@ -58,6 +61,7 @@
 					<diffuse value="0.54" />
 					<reflection value="0.3" />
 					<refraction value="1.54" />
+					<specular value="1.5"/>
 				</material>
 			</object>
 	</objects>

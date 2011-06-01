@@ -61,7 +61,8 @@ public class SceneObjectFactory {
 		double diffuse = Double.parseDouble(info.getChild("diffuse").getAttributeValue("value"));
 		double refraction = Double.parseDouble(info.getChild("refraction").getAttributeValue("value"));
 		double reflection = Double.parseDouble(info.getChild("reflection").getAttributeValue("value"));
-		return new Material(color, reflection, diffuse, refraction);
+		double specular = Double.parseDouble(info.getChild("specular").getAttributeValue("value"));
+		return new Material(color, reflection, diffuse, refraction, specular);
 	}
 	
 	public static Light createLight(Element info) {

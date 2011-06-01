@@ -18,6 +18,45 @@ public class Color extends java.awt.Color {
 		return new Color(getColorComponents(null)[0] * num, getColorComponents(null)[1] * num, getColorComponents(null)[2] * num);
 	}
 	
+	public Color multiply(Color c){
+		float r = c.getColorComponents(null)[0];
+		float g = c.getColorComponents(null)[1];
+		float b = c.getColorComponents(null)[2];
+		if (r > 1) r = 1;
+		if (r < 0) r = 0;
+		if (g > 1) g = 1;
+		if (g < 0) g = 0;
+		if (b > 1) b = 1;
+		if (b < 0) b = 0;
+		return new Color(getColorComponents(null)[0] * r, getColorComponents(null)[1] * g, getColorComponents(null)[2] * b);	
+	}
+	
+	public Color add(Color c){
+		float r = getColorComponents(null)[0] + c.getColorComponents(null)[0];
+		float g = getColorComponents(null)[0] + c.getColorComponents(null)[1];
+		float b = getColorComponents(null)[0] + c.getColorComponents(null)[2];
+		if (r > 1) r = 1;
+		if (r < 0) r = 0;
+		if (g > 1) g = 1;
+		if (g < 0) g = 0;
+		if (b > 1) b = 1;
+		if (b < 0) b = 0;
+		return new Color(r,g,b);
+	}
+	
+	public Color substract(Color c){
+		float r = getColorComponents(null)[0] - c.getColorComponents(null)[0];
+		float g = getColorComponents(null)[0] - c.getColorComponents(null)[1];
+		float b = getColorComponents(null)[0] - c.getColorComponents(null)[2];
+		if (r > 1) r = 1;
+		if (r < 0) r = 0;
+		if (g > 1) g = 1;
+		if (g < 0) g = 0;
+		if (b > 1) b = 1;
+		if (b < 0) b = 0;
+		return new Color(r,g,b);			
+	}
+	
 	public Color combine(Color c) {
 		float colorComponents[][] = { getColorComponents(null), c.getColorComponents(null) };
 		float newColorComponents[] = new float[3];

@@ -28,6 +28,7 @@
 				<diffuse value="0.47" />
 				<reflection value="0.6" />
 				<refraction value="1.52" />
+				<specular value="1.0"/>
 			</material>
 		</object>
 	</objects>

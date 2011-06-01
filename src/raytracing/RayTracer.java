@@ -7,6 +7,7 @@ import math.*;
 public class RayTracer {
 	
 	public static final int RECURSION_LIMIT = 10;
+	public static final Color G_AMBIENT = Color.createColor(new Color(100, 100, 100));
 	
 	private Scene scene;
 	
@@ -55,24 +56,58 @@ public class RayTracer {
 	}
 	
 	public Color findColor(SceneObject o, double d, Ray r, int recursion){
-		Color color, reflectColor, refractColor;
-		color = reflectColor = refractColor = o.getMaterial().getColor();
+		Color color, reflectColor, refractColor, ga, oa;
+		color = reflectColor = refractColor = oa = o.getMaterial().getColor();
+		ga = G_AMBIENT; 
+		color = ga.combine(oa);
 		Vector intersection = r.getPoint(d);
 		Vector normal = o.getNormal(intersection);
 		double diffuse = o.getMaterial().getDiffuse();
 		double reflection = o.getMaterial().getReflection();
 		double refraction = o.getMaterial().getRefraction();
-		double shade = 0.0;
+		double t2 = -1;
+		boolean shadow = false;
 		
 		for (int k = 0; k < scene.getNumLights(); k++){
 			Light light = scene.getLight(k);
-			Vector posLight = light.getPos();
-			posLight.normalize();
-			shade = posLight.dot(normal);
-			if (shade < 0){
-				shade = 0;
+			Vector dirLight = light.getPos().substract(intersection).normalized();
+			Ray rLight = new Ray(intersection, dirLight);
+			double tt = rLight.getT(light.getPos());
+			for(int j = 0; 	!shadow && j < scene.getNumObjects(); j++){
+				t2 = scene.getObject(j).intersects(rLight);
+				if (t2 > 0 && t2 <= tt){
+					shadow = true;
+					break;
+				}
 			}
-			color = color.multiply((float)((1-diffuse)+diffuse*shade));
+			
+			if(!shadow){
+				Color la = light.getAmbient();
+				//color = color.add(la.multiply(oa));
+				color = color.combine(la).combine(oa);
+				
+				Color ld = light.getDiffuse();
+				Color od = o.getMaterial().getColor().multiply((float)diffuse);
+				
+				double dot = normal.dot(dirLight);
+				double att = 15 / (light.getPos().substract(intersection)).magnitudeSquared();
+				
+				if(dot > 0){
+					//color = color.add(ld.multiply(od).multiply((float)att).multiply((float)dot));
+					color = color.combine(ld).combine(od).multiply((float)att).multiply((float)dot);
+					
+					Color ls = light.getSpecular();
+					Vector v = r.getDirection();
+					Vector l = rLight.getDirection();
+					Vector rr = l.substract((normal.multiply(2*l.dot(normal))));
+					double kk = v.dot(rr);
+					if(kk > 0){
+						double ms =o.getMaterial().getSpecular();
+						//color = color.add(ls.multiply((float)Math.pow(k, 20)).multiply((float)ms));
+						color = color.combine(ls.multiply((float)Math.pow(k,20))).multiply((float)ms);
+					}
+				}
+			}
 		}
 		
 		double c1 = - normal.dot(r.getDirection());

@@ -11,16 +11,26 @@ public class Material implements Serializable {
 	private double reflection;
 	private double diffuse;
 	private double refraction;
+	private double specular;
 	
-	public Material(Color color, double reflection, double diffuse, double refraction) {
+	public Material(Color color, double diffuse, double specular, double reflection, double refraction) {
 		this.color = color;
 		this.reflection = reflection;
 		this.diffuse = diffuse;
 		this.refraction = refraction;
+		this.specular = specular;
 	}
 	
 	public Color getColor() {
 		return color;
+	}
+	
+	public void setSpecular(double specular) {
+		this.specular = specular;
+	}
+	
+	public double getSpecular() {
+		return specular;
 	}
 	
 	public void setColor(Color color) {

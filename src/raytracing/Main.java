@@ -11,7 +11,7 @@ public class Main {
 		
 		Scene scene = null;
 		try {
-			scene = Parser.parse("scenes/basic.xml");
+			scene = Parser.parse("scenes/cylinder.xml");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return;
@@ -20,7 +20,8 @@ public class Main {
 		RayTracer rt = new RayTracer(scene);
 		long begin = System.currentTimeMillis();
 		int[][] imageColors = rt.execute();
-		Image.generateImage(imageColors).save("basicWithParse.jpg", "jpeg");
+		//Image.generateImage(imageColors).save("basicWithParse.jpg", "jpeg");
+		Image.generateImage(imageColors).save("cylinder.jpg", "jpeg");
 		/*try {
 			GridRenderer.render(scene);
 		} catch(GridException ge) {

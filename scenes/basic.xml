@@ -19,17 +19,17 @@
 	</lights>
 	
 	<objects>
-		<object type="plane" infinite="true">
+<!--		<object type="plane" infinite="true">
 			<min x="200.0" y="200.0" z="100" />
-			<max x="100.0" y="100.0" z="-100" />
-			<other x="200.0" y="150.0" z="-100" />
+			<max x="200.0" y="100.0" z="100" />
+			<other x="200.0" y="200.0" z="-100" />
 			<material>
-				<color red="200" green="123" blue="90" />
+				<color red="255" green="0" blue="0" />
 				<diffuse value="0.3" />
 				<reflection value="0.5" />
 				<refraction value="1.2" />
 			</material>
-		</object>	
+		</object> -->	
 		<object type="sphere">
 			<position x="200.0" y="300.0" z="100.0" />
 			<radius value="100.0" />

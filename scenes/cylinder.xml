@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE scene>
+
+<scene width="600" height="400">
+	
+	<lights>
+		<light type="1">
+			<position x="200.0" y="200.0" z="200.0" />
+			<ambient red="255" green="255" blue="0" />
+			<diffuse red="255" green="255" blue="0" />
+			<specular red="255" green="255" blue="0" />			
+		</light>
+		<light type="2">
+			<position x="400.0" y="300.0" z="400.0" />
+			<ambient red="255" green="255" blue="0" />
+			<diffuse red="255" green="255" blue="0" />
+			<specular red="255" green="255" blue="0" />			
+		</light>
+	</lights>
+	
+	<objects>
+		<object type="cylinder">
+			<a x="200.0" y="300.0" z="100.0" />
+			<b x="100.0" y="300.0" z="50.0" />
+			<radius value="50.0" />
+			<material>
+				<color red="216" green="216" blue="50" />
+				<diffuse value="0.47" />
+				<reflection value="0.6" />
+				<refraction value="1.52" />
+			</material>
+		</object>
+	</objects>
+	
+</scene>

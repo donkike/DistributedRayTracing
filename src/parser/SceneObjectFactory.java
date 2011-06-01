@@ -39,6 +39,20 @@ public class SceneObjectFactory {
 		return new Sphere(new Vector(x, y, z), radius, material);
 	}
 	
+	public static Cylinder createCylinder(Element info){
+		Material material = createMaterial(info.getChild("material"));
+		double radius = Double.parseDouble(info.getChild("radius").getAttributeValue("value"));
+		Element aInfo = info.getChild("a");
+		double ax = Double.parseDouble(aInfo.getAttributeValue("x"));
+		double ay = Double.parseDouble(aInfo.getAttributeValue("y"));
+		double az = Double.parseDouble(aInfo.getAttributeValue("z"));
+		Element bInfo = info.getChild("b");
+		double bx = Double.parseDouble(bInfo.getAttributeValue("x"));
+		double by = Double.parseDouble(bInfo.getAttributeValue("y"));
+		double bz = Double.parseDouble(bInfo.getAttributeValue("z"));
+		return new Cylinder(radius, new Vector(ax,ay,az), new Vector(bx,by,bz), material);
+	}
+	
 	public static Material createMaterial(Element info) {
 		Element colorInfo = info.getChild("color");
 		Color color = new Color(Integer.parseInt(colorInfo.getAttributeValue("red")),

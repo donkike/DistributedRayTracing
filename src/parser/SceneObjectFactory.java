@@ -49,5 +49,26 @@ public class SceneObjectFactory {
 		double reflection = Double.parseDouble(info.getChild("reflection").getAttributeValue("value"));
 		return new Material(color, reflection, diffuse, refraction);
 	}
+	
+	public static Light createLight(Element info) {
+		int type = Integer.parseInt(info.getAttributeValue("type"));
+		Element position = info.getChild("position");
+		double x = Double.parseDouble(position.getAttributeValue("x"));
+		double y = Double.parseDouble(position.getAttributeValue("y"));
+		double z = Double.parseDouble(position.getAttributeValue("z"));
+		Element ambientInfo = info.getChild("ambient");
+		Color ambient = new Color(Integer.parseInt(ambientInfo.getAttributeValue("red")),
+								Integer.parseInt(ambientInfo.getAttributeValue("green")),
+								Integer.parseInt(ambientInfo.getAttributeValue("blue")));
+		Element diffuseInfo = info.getChild("diffuse");
+		Color diffuse = new Color(Integer.parseInt(diffuseInfo.getAttributeValue("red")),
+								Integer.parseInt(diffuseInfo.getAttributeValue("green")),
+								Integer.parseInt(diffuseInfo.getAttributeValue("blue")));
+		Element specularInfo = info.getChild("specular");
+		Color specular = new Color(Integer.parseInt(specularInfo.getAttributeValue("red")),
+								Integer.parseInt(specularInfo.getAttributeValue("green")),
+								Integer.parseInt(specularInfo.getAttributeValue("blue")));
+		return new Light(new Vector(x,y,z), ambient, diffuse, specular, type);
+	}
 
 }

@@ -11,6 +11,7 @@ import org.jdom.Element;
 import org.jdom.input.SAXBuilder;
 import org.springframework.util.StringUtils;
 
+import scene.Light;
 import scene.Scene;
 import scene.SceneObject;
 
@@ -25,16 +26,35 @@ public class Parser {
 		Scene scene = new Scene(Integer.parseInt(root.getAttributeValue("width")), 
 								Integer.parseInt(root.getAttributeValue("height")));
 		ArrayList<SceneObject> objects = new ArrayList<SceneObject>();
-		ArrayList<SceneObject> lights = new ArrayList<SceneObject>();
+		ArrayList<Light> lights = new ArrayList<Light>();
 		List<Element> lightElements = root.getChild("lights").getChildren("light");
 		for (Element light : lightElements) 
-			lights.add(parseObject(light));
+			lights.add(parseLight(light));
 		List<Element> objectElements = root.getChild("objects").getChildren("object");
 		for (Element object : objectElements) 
 			objects.add(parseObject(object));
 		scene.setLights(lights);
 		scene.setObjects(objects);
 		return scene;
+	}
+	
+	public static Light parseLight(Element object){
+		Method method = null;
+		try{
+			method = SceneObjectFactory.class.getMethod("createLight", Element.class);
+			return (Light)method.invoke(null, object);
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		} catch (NoSuchMethodException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	public static SceneObject parseObject(Element object) {

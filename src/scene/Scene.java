@@ -9,11 +9,11 @@ public class Scene implements Serializable {
 	private int width;
 	private int height;
 	private ArrayList<SceneObject> objects;
-	private ArrayList<SceneObject> lights;
+	private ArrayList<Light> lights;
 	
 	public Scene(int width, int height) {
 		objects = new ArrayList<SceneObject>();
-		lights = new ArrayList<SceneObject>();
+		lights = new ArrayList<Light>();
 		this.width = width;
 		this.height = height;
 	}
@@ -30,15 +30,15 @@ public class Scene implements Serializable {
 		return objects;
 	}
 	
-	public void addLight(SceneObject object){
-		lights.add(object);
+	public void addLight(Light light){
+		lights.add(light);
 	}
 	
-	public SceneObject getLight(int i){
+	public Light getLight(int i){
 		return lights.get(i);
 	}
 	
-	public ArrayList<SceneObject> getLights(){
+	public ArrayList<Light> getLights(){
 		return lights;
 	}
 	
@@ -58,7 +58,7 @@ public class Scene implements Serializable {
 		return width;
 	}
 	
-	public void setLights(ArrayList<SceneObject> lights) {
+	public void setLights(ArrayList<Light> lights) {
 		this.lights = lights;
 	}
 	
@@ -69,7 +69,7 @@ public class Scene implements Serializable {
 	public String toString() {
 		String value = "Scene:";
 		value += "\n--Lights:";
-		for (SceneObject light : lights) 
+		for (Light light : lights) 
 			value += "\n" + light.toString();
 		value += "\n--Objects:";
 		for (SceneObject object : objects)

@@ -65,7 +65,7 @@ public class RayTracer {
 		double shade = 0.0;
 		
 		for (int k = 0; k < scene.getNumLights(); k++){
-			SceneObject light = scene.getLight(k);
+			Light light = scene.getLight(k);
 			Vector posLight = light.getPos();
 			posLight.normalize();
 			shade = posLight.dot(normal);

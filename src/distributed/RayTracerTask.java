@@ -2,6 +2,7 @@ package distributed;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import org.gridgain.grid.GridException;
@@ -25,9 +26,9 @@ public class RayTracerTask extends GridTaskSplitAdapter<GridifyArgument, int[][]
 			jobs.add(new GridJobAdapterEx(scene, i, Math.min(i + delta, scene.getHeight())) {
 
 				@Override
-				public int[][] execute() throws GridException {					
-					return GridRenderer.executeRayTracer((Scene)argument(0),
-														 (Integer)argument(1), (Integer)argument(2));
+				public OrderWrapper<int[][]> execute() throws GridException {					
+					return new OrderWrapper<int[][]>((Integer)argument(1), GridRenderer.executeRayTracer((Scene)argument(0),
+																			(Integer)argument(1), (Integer)argument(2)));
 				}
 				
 			});
@@ -37,11 +38,19 @@ public class RayTracerTask extends GridTaskSplitAdapter<GridifyArgument, int[][]
 	
 	@Override
 	public int[][] reduce(List<GridJobResult> arg) throws GridException {
-		int[][] sample = (int[][])arg.get(0).getData();
-		int[][] result = new int[sample.length * arg.size()][sample[0].length];
+		List<OrderWrapper<int[][]>> wrappers = new ArrayList<OrderWrapper<int[][]>>();
+		int width = 0, height = 0;
+		for (GridJobResult result : arg) { 
+			OrderWrapper<int[][]> ow = (OrderWrapper)result.getData();
+			wrappers.add(ow);
+			height += ow.getContent().length;
+		}
+		width = wrappers.get(0).getContent()[0].length;
+		Collections.sort(wrappers);
+		int[][] result = new int[height][width];
 		int pos = 0;
-		for (GridJobResult jobResult : arg) {
-			int[][] data = (int[][])jobResult.getData();
+		for (OrderWrapper<int[][]> wrapper : wrappers) {
+			int[][] data = wrapper.getContent();
 			for (int i = 0; i < data.length; i++) {
 				result[pos++] = data[i];
 			}

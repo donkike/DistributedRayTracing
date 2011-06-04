@@ -1,9 +1,11 @@
 package scene;
 
+import java.io.Serializable;
+
 import image.Color;
 import math.Vector;
 
-public class Light {
+public class Light implements Serializable {
 	
 	public static final int GLOBAL = 1;
 	public static final int DIRECTIONAL = 2;

@@ -2,6 +2,7 @@ package distributed;
 
 import java.io.Serializable;
 
+@SuppressWarnings({ "serial", "unchecked" })
 public class OrderWrapper<T> implements Comparable, Serializable {
 	
 	private Integer order;

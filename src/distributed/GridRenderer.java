@@ -11,14 +11,14 @@ import scene.Scene;
 
 public class GridRenderer {
 	
-	@SuppressWarnings("unchecked")
 	public static void render(Scene scene) throws GridException {
 		GridFactory.start();
 		int[][] colors = null;
 		try {
 			long begin = System.currentTimeMillis();
 			colors = executeRayTracer(scene, 0, scene.getHeight());
-			System.out.println("Distributed execution time: " + (System.currentTimeMillis() - begin));
+			long end = System.currentTimeMillis();
+			System.out.println("Distributed execution time: " + (end - begin) + " ms");
 		} finally {
 			GridFactory.stop(false); // don't cancel jobs, wait for completion
 			Image.generateImage(colors).save("distributedRender.jpg", "jpeg");

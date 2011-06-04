@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE scene>
 
-<scene width="600" height="400">
+<scene width="1200" height="600">
 	
 	<lights>
 		<light type="1">
@@ -20,16 +20,69 @@
 	
 	<objects>
 <!--		<object type="plane" infinite="true">
-			<min x="200.0" y="200.0" z="100" />
-			<max x="200.0" y="100.0" z="100" />
-			<other x="200.0" y="200.0" z="-100" />
+			<min x="200.0" y="200.0" z="-100" />
+			<max x="300.0" y="200.0" z="-100" />
+			<other x="300.0" y="400.0" z="20" />
 			<material>
 				<color red="255" green="0" blue="0" />
 				<diffuse value="0.3" />
 				<reflection value="0.5" />
 				<refraction value="1.2" />
 			</material>
-		</object> -->	
+		</object> -->
+		<object type="cylinder">
+			<a x="400.0" y="300.0" z="300.0" />
+			<b x="500.0" y="300.0" z="340.0" />
+			<radius value="50.0" />
+			<material>
+				<color red="216" green="216" blue="255" />
+				<diffuse value="0.47" />
+				<reflection value="0.6" />
+				<refraction value="1.52" />
+			</material>
+		</object>
+		<object type="cylinder">
+			<a x="300.0" y="450.0" z="300.0" />
+			<b x="450.0" y="400.0" z="350.0" />
+			<radius value="50.0" />
+			<material>
+				<color red="216" green="240" blue="140" />
+				<diffuse value="0.3" />
+				<reflection value="0.7" />
+				<refraction value="1.2" />
+			</material>
+		</object>
+		<object type="cylinder">
+			<a x="300.0" y="900.0" z="300.0" />
+			<b x="500.0" y="400.0" z="350.0" />
+			<radius value="80.0" />
+			<material>
+				<color red="200" green="20" blue="170" />
+				<diffuse value="0.3" />
+				<reflection value="0.7" />
+				<refraction value="1.2" />
+			</material>
+		</object>
+		<object type="sphere">
+			<position x="400.0" y="800.0" z="100.0" />
+			<radius value="30.0" />
+			<material>
+				<color red="200" green="255" blue="50" />
+				<diffuse value="0.7" />
+				<reflection value="0.2" />
+				<refraction value="1" />
+			</material>
+		</object>
+		<object type="sphere">
+			<position x="300.0" y="800.0" z="120.0" />
+			<radius value="300.0" />
+			<material>
+				<color red="200" green="200" blue="250" />
+				<diffuse value="0.72" />
+				<reflection value="0.12" />
+				<refraction value="1.12" />
+			</material>
+		</object>
 		<object type="sphere">
 			<position x="200.0" y="300.0" z="100.0" />
 			<radius value="100.0" />

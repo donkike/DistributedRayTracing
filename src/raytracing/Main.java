@@ -1,11 +1,12 @@
 package raytracing;
 
 
+import image.Image;
+
 import org.gridgain.grid.GridException;
 import distributed.GridRenderer;
 import parser.Parser;
 import scene.Scene;
-import image.Image;
 
 public class Main {
 	
@@ -18,20 +19,21 @@ public class Main {
 			e.printStackTrace();
 			return;
 		}
-		
-		RayTracer rt = new RayTracer(scene);
-		long begin = System.currentTimeMillis();
-
-		//int[][] imageColors = rt.execute();
-		//Image.generateImage(imageColors).save("basicWithParse.jpg", "jpeg");
-		//Image.generateImage(imageColors).save("cylinder.jpg", "jpeg");
-		try {
-			GridRenderer.render(scene);
-		} catch(GridException ge) {
-			System.err.println("GridException: " + ge.getMessage());
+		if (args[0].equals("sec")){
+			RayTracer rt = new RayTracer(scene);
+			long begin = System.currentTimeMillis();
+			int[][] imageColors = rt.execute();
+			long end = System.currentTimeMillis();
+			System.out.println("Execution time: "+ (end - begin) +" ms");
+			Image.generateImage(imageColors).save("secuentialRender.jpg", "jpeg");
 		}
-		long end = System.currentTimeMillis();
-		System.out.println("Execution time: "+ (end - begin) +" ms");
+		if (args[0].equals("par")){
+			try {
+				GridRenderer.render(scene);
+			} catch(GridException ge) {
+				System.err.println("GridException: " + ge.getMessage());
+			}
+		}
 	}
 
 }

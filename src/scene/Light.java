@@ -5,6 +5,7 @@ import java.io.Serializable;
 import image.Color;
 import math.Vector;
 
+@SuppressWarnings("serial")
 public class Light implements Serializable {
 	
 	public static final int GLOBAL = 1;

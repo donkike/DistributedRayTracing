@@ -14,6 +14,7 @@ import org.gridgain.grid.gridify.GridifyArgument;
 
 import scene.Scene;
 
+@SuppressWarnings("serial")
 public class RayTracerTask extends GridTaskSplitAdapter<GridifyArgument, int[][]> {
 
 	@Override
@@ -36,6 +37,7 @@ public class RayTracerTask extends GridTaskSplitAdapter<GridifyArgument, int[][]
 		return jobs;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public int[][] reduce(List<GridJobResult> arg) throws GridException {
 		List<OrderWrapper<int[][]>> wrappers = new ArrayList<OrderWrapper<int[][]>>();

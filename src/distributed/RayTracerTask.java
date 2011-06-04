@@ -20,10 +20,10 @@ public class RayTracerTask extends GridTaskSplitAdapter<GridifyArgument, int[][]
 	protected Collection<? extends GridJob> split(int gridSize, GridifyArgument arg)
 			throws GridException {
 		Scene scene = (Scene)arg.getMethodParameters()[0];
-		int delta = scene.getHeight() / gridSize;
+		int delta = scene.getHeight() / gridSize + (scene.getHeight() % gridSize == 0 ? 0 : 1);
 		List<GridJobAdapterEx> jobs = new ArrayList<GridJobAdapterEx>(gridSize);
-		for (int i = 0; i < scene.getHeight(); i += delta) {
-			jobs.add(new GridJobAdapterEx(scene, i, Math.min(i + delta, scene.getHeight())) {
+		for (int i = 0; i < gridSize; i++) {
+			jobs.add(new GridJobAdapterEx(scene, i * delta, Math.min(i * delta + delta, scene.getHeight())) {
 
 				@Override
 				public OrderWrapper<int[][]> execute() throws GridException {					

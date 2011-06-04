@@ -51,9 +51,8 @@ public class RayTracerTask extends GridTaskSplitAdapter<GridifyArgument, int[][]
 		int pos = 0;
 		for (OrderWrapper<int[][]> wrapper : wrappers) {
 			int[][] data = wrapper.getContent();
-			for (int i = 0; i < data.length; i++) {
-				result[pos++] = data[i];
-			}
+			for (int i = 0; i < data.length; i++) 
+				result[pos++] = data[i];			
 		}
 		return result;
 	}

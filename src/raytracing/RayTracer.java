@@ -21,7 +21,7 @@ public class RayTracer {
 	
 	public int[][] execute(int fromRow, int toRow) {
 		System.out.println("Executing RayTracer from  row " + fromRow + " to " + toRow);
-		int colors[][] = new int[toRow - fromRow + 1][scene.getWidth()];
+		int colors[][] = new int[toRow - fromRow][scene.getWidth()];
 		for (int i = 0; fromRow + i < toRow; i++) {
 			for (int j = 0; j < scene.getWidth(); j++) {
 				

@@ -20,7 +20,7 @@ Usage
 -----
  
  1. Run `ant` to compile project. Generated jar file will be at _build/jar_ directory.
- 2. Run `java -jar RayTracer.java <scene_file> [options]`.
+ 2. Run `./RayTracer.sh <scene_file> [options]`.
  
 For a list of options and example usage, type option `--help` or `-h`.
 

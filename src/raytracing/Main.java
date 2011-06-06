@@ -20,8 +20,7 @@ import scene.Scene;
 public class Main {
 	
 	private static Options options;
-	
-	public static void generateOptions() {
+	private static void generateOptions() {
 		options = new Options();
 		Option grid = new Option("g", "grid", false, "execute in parallel using GridGain");
 		Option file = new Option("o", "output-file", true, "specify name of output file image; "
@@ -46,7 +45,7 @@ public class Main {
 		help.printHelp("java -jar RayTracer.jar <scene_file> [options]", "options:", options, "");
 	}
 	
-	public static void main(String[] args) {		
+	public static void main(String[] args) {
 		generateOptions();
 		CommandLineParser parser = new PosixParser();
 		CommandLine line = null;

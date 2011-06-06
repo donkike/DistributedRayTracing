@@ -11,7 +11,7 @@ import scene.Scene;
 
 public class GridRenderer {
 	
-	public static void render(Scene scene) throws GridException {
+	public static int[][] render(Scene scene) throws GridException {
 		GridFactory.start();
 		int[][] colors = null;
 		try {
@@ -21,8 +21,8 @@ public class GridRenderer {
 			System.out.println("Distributed execution time: " + (end - begin) + " ms");
 		} finally {
 			GridFactory.stop(false); // don't cancel jobs, wait for completion
-			Image.generateImage(colors).save("distributedRender.jpg", "jpeg");
 		}
+		return colors;
 	}
 	
 	@Gridify(taskClass=RayTracerTask.class)

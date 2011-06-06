@@ -18,8 +18,7 @@ import scene.SceneObject;
 public class Parser {
 	
 	@SuppressWarnings("unchecked")
-	public static Scene parse(String filename) throws Exception {
-		File file = new File(filename);
+	public static Scene parse(File file) throws Exception {
 		SAXBuilder builder = new SAXBuilder();
 		Document doc = builder.build(file);
 		Element root = doc.getRootElement();
@@ -38,23 +37,12 @@ public class Parser {
 		return scene;
 	}
 	
+	public static Scene parse(String filename) throws Exception {
+		return parse(new File(filename));
+	}
+	
 	public static Light parseLight(Element object){
-		Method method = null;
-		try{
-			method = SceneObjectFactory.class.getMethod("createLight", Element.class);
-			return (Light)method.invoke(null, object);
-		} catch (SecurityException e) {
-			e.printStackTrace();
-		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			e.printStackTrace();
-		}
-		return null;
+		return SceneObjectFactory.createLight(object);
 	}
 	
 	public static SceneObject parseObject(Element object) {

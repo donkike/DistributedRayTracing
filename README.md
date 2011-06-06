@@ -14,7 +14,7 @@ Requires the following libraries/frameworks:
  * GridGain [http://www.gridgain.com/](http://www.gridgain.com/)
  * JDOM [http://www.jdom.org/](http://www.jdom.org/)
  
-Download and put into _lib_. Ant will search that directory for external libraries.
+Download and put into _lib/_. Ant will search that directory for external libraries.
 
 Usage
 -----
@@ -27,4 +27,4 @@ For a list of options and example usage, type option `--help` or `-h`.
 Scene Files
 -----------
 
-Example of scene files and format used can be found in _scenes_ directory.
+Example of scene files and format used can be found in _scenes/_ directory.

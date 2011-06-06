@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ======================================================================                                                       
+
+     RayTracer    
+     Implementation of a distributed RayTracer
+                                                                                  
+     ====================================================================== -->
+<project name="RayTracer" default="main">
+    <description>
+            Implementation of a distributed RayTracer
+    </description>
+	
+	<property name="jar.name" value="${ant.project.name}.jar"/>
+	
+	<property name="src.dir" value="src"/>
+	
+	<property name="build.dir" value="build"/>
+	<property name="classes.dir" value="${build.dir}/classes"/>
+	<property name="jar.dir" value="${build.dir}/jar"/>
+	<property name="lib.dir" value="lib"/>
+	
+	<property name="main-class" value="raytracing.Main"/>
+	
+	<path id="classpath">
+		<fileset dir="${lib.dir}" includes="**/*.jar"/>
+	</path>
+	
+	<manifestclasspath property="jar.classpath" jarfile="${jar.dir}/${jar.name}">
+		<classpath refid="classpath"/>
+	</manifestclasspath>
+
+    <!-- ================================= 
+          target: main              
+         ================================= -->
+    <target name="main" depends="clean-build" description="Builds project and generates jar file"/>
+
+    <!-- =================================
+          target: clean-build                      
+         ================================= -->
+    <target name="clean-build" depends="clean,jar" description="Cleans and rebuilds the project"/>
+	
+	<!-- ================================= 
+          target: clean              
+         ================================= -->
+    <target name="clean" description="Removes generated build">
+        <delete dir="${build.dir}"/>
+    </target>
+
+	<!-- ================================= 
+          target: jar              
+         ================================= -->
+    <target name="jar" depends="compile" description="Generates jar file">
+    	<jar destfile="${jar.dir}/${jar.name}" basedir="${classes.dir}">
+    		<manifest>
+    			<attribute name="Main-Class" value="${main-class}"/>
+    			<attribute name="Class-Path" value="${jar.classpath}"/>
+    		</manifest>
+    	</jar>
+    </target>
+	
+	<!-- ================================= 
+          target: compile              
+         ================================= -->
+    <target name="compile" depends="build-dir" description="Compiles source files into classes">
+    	<javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="classpath"/>
+    </target>
+	
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: build-dir                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="build-dir">
+        <mkdir dir="${classes.dir}"/>
+    	<mkdir dir="${jar.dir}"/>
+    </target>
+
+</project>
+

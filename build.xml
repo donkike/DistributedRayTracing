@@ -56,7 +56,7 @@
          ================================= -->
     <target name="clean" description="Removes generated build">
         <delete dir="${build.dir}"/>
-    	<delete file="${jar.dir}/#{jar.name}"/>
+    	<delete file="${jar.dir}/${jar.name}"/>
     	<delete file="${exec.name}"/>
     </target>
 

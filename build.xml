@@ -13,7 +13,7 @@
 	<property name="jar.name" value="${ant.project.name}.jar"/>
 	<property name="exec.name" value="${ant.project.name}"/>
 	
-	<property name="src.dir" value="src"/>
+	<property name="src.dir" value="./src"/>
 	
 	<property name="build.dir" value="./build"/>
 	<property name="classes.dir" value="${build.dir}/classes"/>
@@ -65,9 +65,9 @@
          ================================= -->
     <target name="jar" depends="compile" description="Generates jar file">
     	<jar destfile="${jar.dir}/${jar.name}" basedir="${classes.dir}">
-    		<metainf>
+    		<!-- <metainf>
     			<fileset dir="${lib.dir}" includes="**/config/aop/aspectj/META-INF/**"/> 
-    		</metainf>
+    		</metainf> -->
     		<manifest>
     			<attribute name="Main-Class" value="${main-class}"/>
     			<attribute name="Class-Path" value="${jar.classpath}"/>

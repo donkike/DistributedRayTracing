@@ -11,7 +11,7 @@
     </description>
 	
 	<property name="jar.name" value="${ant.project.name}.jar"/>
-	<property name="exec.name" value="${ant.project.name}"/>
+	<property name="exec.name" value="${ant.project.name}.sh"/>
 	
 	<property name="src.dir" value="./src"/>
 	

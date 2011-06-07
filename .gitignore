@@ -1,5 +1,7 @@
 *.class
 .classpath
 lib/*
+!lib/README
 build/*
-RayTracer.sh
+RayTracer
+*.jar

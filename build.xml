@@ -11,13 +11,14 @@
     </description>
 	
 	<property name="jar.name" value="${ant.project.name}.jar"/>
+	<property name="exec.name" value="${ant.project.name}"/>
 	
 	<property name="src.dir" value="src"/>
 	
-	<property name="build.dir" value="build"/>
+	<property name="build.dir" value="./build"/>
 	<property name="classes.dir" value="${build.dir}/classes"/>
-	<property name="jar.dir" value="${build.dir}/jar"/>
-	<property name="lib.dir" value="lib"/>
+	<property name="jar.dir" value="."/>
+	<property name="lib.dir" value="./lib"/>
 	
 	<property name="main-class" value="raytracing.Main"/>
 	
@@ -25,7 +26,12 @@
 		<fileset dir="${lib.dir}" includes="**/aspectjweaver*.jar"/>
 	</path>
 	
+	<path id="aspectj-meta">
+		<fileset dir="${lib.dir}" includes="**/config/aop/aspectj/META-INF/**"/>
+	</path>
+	
 	<property name="aspectj.jar" refid="aspectj-jar" />
+	<property name="aspectj.meta" refid="aspectj-meta" />
 	
 	<path id="classpath">
 		<fileset dir="${lib.dir}" includes="**/*.jar"/>
@@ -50,7 +56,8 @@
          ================================= -->
     <target name="clean" description="Removes generated build">
         <delete dir="${build.dir}"/>
-    	<delete file="${ant.project.name}.sh"/>
+    	<delete file="${jar.dir}/#{jar.name}"/>
+    	<delete file="${exec.name}"/>
     </target>
 
 	<!-- ================================= 
@@ -58,13 +65,13 @@
          ================================= -->
     <target name="jar" depends="compile" description="Generates jar file">
     	<jar destfile="${jar.dir}/${jar.name}" basedir="${classes.dir}">
+    		<metainf>
+    			<fileset dir="${lib.dir}" includes="**/config/aop/aspectj/META-INF/**"/> 
+    		</metainf>
     		<manifest>
     			<attribute name="Main-Class" value="${main-class}"/>
     			<attribute name="Class-Path" value="${jar.classpath}"/>
     		</manifest>
-    		<metainf>
-    			<fileset dir="${lib.dir}" includes="**/config/aop/aspectj/**"/> 
-    		</metainf>
     	</jar>
     </target>
 	
@@ -80,17 +87,16 @@
          - - - - - - - - - - - - - - - - - -->
     <target name="build-dir">
         <mkdir dir="${classes.dir}"/>
-    	<mkdir dir="${jar.dir}"/>
     </target>
 	
 	<!-- - - - - - - - - - - - - - - - - - 
           target: exec                      
          - - - - - - - - - - - - - - - - - -->
     <target name="exec">
-     	<echo file="${ant.project.name}.sh">#!/bin/bash
+     	<echo file="${exec.name}">#!/bin/bash
 java -ea "-javaagent:${aspectj.jar}" -jar ${jar.dir}/${jar.name} $@
     	</echo>
-    	<chmod file="${ant.project.name}.sh" perm="755" />
+    	<chmod file="${exec.name}" perm="755" />
     </target>
 
 </project>

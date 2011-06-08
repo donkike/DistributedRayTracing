@@ -19,7 +19,7 @@
 	<property name="classes.dir" value="${build.dir}/classes"/>
 	<property name="jar.dir" value="."/>
 	<property name="lib.dir" value="./lib"/>
-	<property name="meta.dir" value="${build.dir}/META-INF"/>
+	<property name="meta.dir" value="${classes.dir}/META-INF"/>
 	
 	<property name="main-class" value="raytracing.Main"/>
 	<path id="aspectj-jar">
@@ -64,12 +64,11 @@
           target: jar              
          ================================= -->
     <target name="jar" depends="compile" description="Generates jar file">
-		<copy todir="${meta.dir}/META-INF" flatten="true">
+		<copy todir="${meta.dir}" flatten="true">
 			<fileset dir="${lib.dir}" includes="**/config/aop/aspectj/META-INF/*"/>
 		</copy>
     	<jar destfile="${jar.dir}/${jar.name}">
     		<fileset dir="${classes.dir}"/>
-    		<fileset dir="${meta.dir}"/>
     		<!--<metainf>
     			<fileset dir="${meta.dir}"/> 
     		</metainf>-->

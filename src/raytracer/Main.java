@@ -1,4 +1,4 @@
-package raytracing;
+package raytracer;
 
 
 import image.Image;

@@ -6,7 +6,7 @@ import org.gridgain.grid.GridException;
 import org.gridgain.grid.GridFactory;
 import org.gridgain.grid.gridify.Gridify;
 
-import raytracing.RayTracer;
+import raytracer.RayTracer;
 import scene.Scene;
 
 public class GridRenderer {

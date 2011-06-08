@@ -22,6 +22,7 @@
 	<property name="meta.dir" value="${classes.dir}/META-INF"/>
 	
 	<property name="main-class" value="raytracing.Main"/>
+	
 	<path id="aspectj-jar">
 		<fileset dir="${lib.dir}" includes="**/aspectjweaver*.jar"/>
 	</path>

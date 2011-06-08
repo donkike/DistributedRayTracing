@@ -14,14 +14,14 @@
 	<property name="exec.name" value="${ant.project.name}.sh"/>
 	
 	<property name="src.dir" value="./src"/>
-	
+
 	<property name="build.dir" value="./build"/>
 	<property name="classes.dir" value="${build.dir}/classes"/>
 	<property name="jar.dir" value="."/>
 	<property name="lib.dir" value="./lib"/>
+	<property name="meta.dir" value="${build.dir}/META-INF"/>
 	
 	<property name="main-class" value="raytracing.Main"/>
-	
 	<path id="aspectj-jar">
 		<fileset dir="${lib.dir}" includes="**/aspectjweaver*.jar"/>
 	</path>
@@ -64,10 +64,15 @@
           target: jar              
          ================================= -->
     <target name="jar" depends="compile" description="Generates jar file">
-    	<jar destfile="${jar.dir}/${jar.name}" basedir="${classes.dir}">
-    		<!-- <metainf>
-    			<fileset dir="${lib.dir}" includes="**/config/aop/aspectj/META-INF/**"/> 
-    		</metainf> -->
+		<copy todir="${meta.dir}/META-INF" flatten="true">
+			<fileset dir="${lib.dir}" includes="**/config/aop/aspectj/META-INF/*"/>
+		</copy>
+    	<jar destfile="${jar.dir}/${jar.name}">
+    		<fileset dir="${classes.dir}"/>
+    		<fileset dir="${meta.dir}"/>
+    		<!--<metainf>
+    			<fileset dir="${meta.dir}"/> 
+    		</metainf>-->
     		<manifest>
     			<attribute name="Main-Class" value="${main-class}"/>
     			<attribute name="Class-Path" value="${jar.classpath}"/>
@@ -94,7 +99,7 @@
          - - - - - - - - - - - - - - - - - -->
     <target name="exec">
      	<echo file="${exec.name}">#!/bin/bash
-java -ea "-javaagent:${aspectj.jar}" -jar ${jar.dir}/${jar.name} $@
+java -Xmx512m -ea "-javaagent:${aspectj.jar}" -jar ${jar.dir}/${jar.name} $@
     	</echo>
     	<chmod file="${exec.name}" perm="755" />
     </target>

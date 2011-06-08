@@ -19,7 +19,7 @@ Download and put into _lib/_. Ant will search that directory for external librar
 Usage
 -----
  
- 1. Run `ant` to compile project. Generated jar file will be at current directory.
+ 1. Run `ant` to compile project. Generated jar and executable files will be at current directory.
  2. Run `./RayTracer.sh <scene_file> [options]`.
  
 For a list of options and example usage, type option `--help` or `-h`.

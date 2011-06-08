@@ -42,7 +42,7 @@ public class Main {
 	
 	public static void printUsage() {
 		HelpFormatter help = new HelpFormatter();
-		help.printHelp("java -jar RayTracer.jar <scene_file> [options]", "options:", options, "");
+		help.printHelp("./RayTracer.sh <scene_file> [options]", "options:", options, "");
 	}
 	
 	public static void main(String[] args) {

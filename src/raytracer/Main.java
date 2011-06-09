@@ -54,7 +54,7 @@ public class Main {
 		} catch (ParseException pe) {
 			System.err.println("Error getting argument options: " + pe.getMessage());
 			return;
-		}		
+		}
 		if (line.hasOption('h') || line.getArgs().length < 1) {
 			printUsage();
 			return;

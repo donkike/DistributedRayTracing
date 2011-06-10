@@ -74,9 +74,17 @@ public class Main {
 		int[][] imageColors = null;
 		if (grid) {
 			try {
+				GridRenderer.startGrid();
+				
+				long begin = System.currentTimeMillis();
 				imageColors = GridRenderer.render(scene);
+				long end = System.currentTimeMillis();
+				
+				System.out.println("Distributed execution time: " + (end - begin) + " ms");
 			} catch(GridException ge) {
 				System.err.println("Could not render scene in grid: " + ge.getMessage());
+			} finally {
+				GridRenderer.stopGrid();
 			}
 		} else {
 			RayTracer rt = new RayTracer(scene);

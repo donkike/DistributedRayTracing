@@ -1,5 +1,6 @@
 package distributed;
 
+import org.gridgain.grid.Grid;
 import org.gridgain.grid.GridException;
 import org.gridgain.grid.GridFactory;
 import org.gridgain.grid.gridify.Gridify;
@@ -9,18 +10,19 @@ import scene.Scene;
 
 public class GridRenderer {
 	
-	public static int[][] render(Scene scene) throws GridException {
-		GridFactory.start();
-		int[][] colors = null;
-		try {
-			long begin = System.currentTimeMillis();
-			colors = executeRayTracer(scene, 0, scene.getHeight());
-			long end = System.currentTimeMillis();
-			System.out.println("Distributed execution time: " + (end - begin) + " ms");
-		} finally {
-			GridFactory.stop(false); // don't cancel jobs, wait for completion
-		}
-		return colors;
+	private static Grid grid = null;
+	
+	public static void startGrid() throws GridException {
+		if (grid == null)
+			grid = GridFactory.start();
+	}
+	
+	public static int[][] render(Scene scene) {
+		return executeRayTracer(scene, 0, scene.getHeight());	
+	}
+	
+	public static void stopGrid() {
+		GridFactory.stop(false); // don't cancel jobs, wait for completion
 	}
 	
 	@Gridify(taskClass=RayTracerTask.class)

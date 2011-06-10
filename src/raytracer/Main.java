@@ -30,7 +30,7 @@ public class Main {
 														+ "defaults to jpeg");
 		format.setArgName("format");
 		Option output = new Option("d", "output-dir", true, "specify output directory for image; "
-															+ "defaults to current directory");
+															+ "defaults to images/ directory");
 		output.setArgName("directory");
 		Option help = new Option("h", "help", false, "show help and example usage");
 		options.addOption(grid);

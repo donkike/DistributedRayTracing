@@ -62,7 +62,7 @@ public class Main {
 		String scenefile = line.getArgs()[0];
 		String filename = line.getOptionValue('o', "output-image.jpg");
 		String format = line.getOptionValue('f', "jpeg");
-		String directory = line.getOptionValue('d', null);
+		String directory = line.getOptionValue('d', "images");
 		boolean grid = line.hasOption('g');
 		Scene scene = null;
 		try {

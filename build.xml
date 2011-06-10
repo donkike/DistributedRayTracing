@@ -11,14 +11,16 @@
     </description>
 	
 	<property name="jar.name" value="${ant.project.name}.jar"/>
-	<property name="exec.name" value="${ant.project.name}.sh"/>
+	<property name="exec.nix" value="${ant.project.name}.sh"/>
+	<property name="exec.win" value="${ant.project.name}.bat"/>
 	
 	<property name="src.dir" value="./src"/>
 
-	<property name="build.dir" value="./build"/>
+	<property name="exec.dir" value="${basedir}/bin" />
+	<property name="build.dir" value="${basedir}/build"/>
 	<property name="classes.dir" value="${build.dir}/classes"/>
-	<property name="jar.dir" value="."/>
-	<property name="lib.dir" value="./lib"/>
+	<property name="jar.dir" value="${basedir}"/>
+	<property name="lib.dir" value="${basedir}/lib"/>
 	<property name="meta.dir" value="${classes.dir}/META-INF"/>
 	
 	<property name="main-class" value="raytracer.Main"/>
@@ -56,9 +58,9 @@
           target: clean              
          ================================= -->
     <target name="clean" description="Removes generated build">
-        <delete dir="${build.dir}"/>
     	<delete file="${jar.dir}/${jar.name}"/>
-    	<delete file="${exec.name}"/>
+        <delete dir="${build.dir}"/>
+    	<delete dir="${exec.dir}"/>
     </target>
 
 	<!-- ================================= 
@@ -83,25 +85,21 @@
 	<!-- ================================= 
           target: compile              
          ================================= -->
-    <target name="compile" depends="build-dir" description="Compiles source files into classes">
+    <target name="compile" description="Compiles source files into classes">
+    	<mkdir dir="${classes.dir}"/>
     	<javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="classpath"/>
-    </target>
-	
-	<!-- - - - - - - - - - - - - - - - - - 
-          target: build-dir                      
-         - - - - - - - - - - - - - - - - - -->
-    <target name="build-dir">
-        <mkdir dir="${classes.dir}"/>
     </target>
 	
 	<!-- - - - - - - - - - - - - - - - - - 
           target: exec                      
          - - - - - - - - - - - - - - - - - -->
     <target name="exec">
-     	<echo file="${exec.name}">#!/bin/bash
+    	<mkdir dir="${exec.dir}"/>
+     	<echo file="${exec.dir}/${exec.nix}">#!/bin/bash
 java -Xmx512m -ea "-javaagent:${aspectj.jar}" -jar ${jar.dir}/${jar.name} $@
     	</echo>
-    	<chmod file="${exec.name}" perm="755" />
+    	<chmod file="${exec.dir}/${exec.nix}" perm="755" />
+    	<echo file="${exec.dir}/${exec.win}">java -Xmx512m -ea "-javaagent:${aspectj.jar}" -jar ${jar.dir}/${jar.name} %*</echo>
     </target>
 
 </project>

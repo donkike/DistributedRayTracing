@@ -3,5 +3,5 @@
 lib/*
 !lib/README
 build/*
-RayTracer
+bin/*
 *.jar

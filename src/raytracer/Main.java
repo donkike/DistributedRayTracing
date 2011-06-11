@@ -1,6 +1,8 @@
 package raytracer;
 
+import java.io.IOException;
 
+import gui.MainFrame;
 import image.Image;
 
 import org.gridgain.grid.GridException;
@@ -16,10 +18,12 @@ import com.newrelic.org.apache.commons.cli.PosixParser;
 import distributed.GridRenderer;
 import parser.Parser;
 import scene.Scene;
+import util.Reader;
 
 public class Main {
 	
 	private static Options options;
+	
 	private static void generateOptions() {
 		options = new Options();
 		Option grid = new Option("g", "grid", false, "execute in parallel using GridGain");
@@ -32,11 +36,14 @@ public class Main {
 		Option output = new Option("d", "output-dir", true, "specify output directory for image; "
 															+ "defaults to current directory");
 		output.setArgName("directory");
+		
+		Option interactive = new Option("i", "interactive", false, "execute application in interactive mode");
 		Option help = new Option("h", "help", false, "show help and example usage");
 		options.addOption(grid);
 		options.addOption(file);
 		options.addOption(format);
 		options.addOption(output);
+		options.addOption(interactive);
 		options.addOption(help);
 	}
 	
@@ -55,10 +62,25 @@ public class Main {
 			System.err.println("Error getting argument options: " + pe.getMessage());
 			return;
 		}
+		
+		if (line.hasOption('i')) {
+			new MainFrame();
+			/*try {
+				GridRenderer.startGrid();
+				new MainFrame();
+			} catch(GridException ge) {
+				System.err.println("Error executing in grid: " + ge.getMessage());
+			} finally {
+				GridRenderer.stopGrid();
+			}*/
+			return;
+		}
+		
 		if (line.hasOption('h') || line.getArgs().length < 1) {
 			printUsage();
 			return;
 		}	
+		
 		String scenefile = line.getArgs()[0];
 		String filename = line.getOptionValue('o', "output-image.jpg");
 		String format = line.getOptionValue('f', "jpeg");

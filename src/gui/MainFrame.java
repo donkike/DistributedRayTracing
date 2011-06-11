@@ -19,12 +19,20 @@ public class MainFrame extends JFrame {
 		inputPanel.resetDefaultValues();
 		add(inputPanel, BorderLayout.CENTER);
 		
-		buttonPanel = new ButtonPanel();
+		buttonPanel = new ButtonPanel(this);
 		add(buttonPanel, BorderLayout.SOUTH);
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setVisible(true);
+	}
+	
+	public void render() {
+		
+	}
+	
+	public void reset() {
+		inputPanel.resetDefaultValues();
 	}
 	
 }
